@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 	public class MySQL8 {
 	static String driver = "com.mysql.cj.jdbc.Driver";
-	static String url = "jdbc:mysql://localhost:3306/myshop?serverTimezone=Asia/Seoul";
+	static String url = "jdbc:mysql://localhost:3306/gp?serverTimezone=Asia/Seoul";
 	static String user = "root";
 	static String pass = "1234";
 	
-	public static String SAMPLE_SELECT_ALL = "select * from sample1 order by item3 desc";
+	public final static String SAMPLE_SELECT_ALL = "select * from sample1 order by item3 desc";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(driver);
