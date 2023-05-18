@@ -1,7 +1,5 @@
 package kr.go.gp.test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,14 +10,14 @@ import kr.go.gp.util.MySQL8;
 import org.junit.Test;
 
 public class DTOTest {
-	private Connection con = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
+	public Connection con = null;
+	public PreparedStatement pstmt = null;
+	public ResultSet rs = null;
 	String sql = "";
 	ArrayList<Sample1> samList = new ArrayList<Sample1>();
 	
 	public ArrayList<Sample1> db(){
-		try{
+		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.SAMPLE_SELECT_ALL);
 			rs = pstmt.executeQuery();
@@ -43,7 +41,9 @@ public class DTOTest {
 			System.out.println("아이디 : "+sam.getItem1());
 			System.out.println("포인트 : "+sam.getItem2());
 			System.out.println("가입일 : "+sam.getItem3());
+			System.out.println();
 		}
+		//fail("Not yet implemented");
 	}
 }
 class Sample1 {
