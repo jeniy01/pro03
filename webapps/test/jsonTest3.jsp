@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="java.util.*, java.lang.*" %>
-<%@ page import="java.text.*, java.net.InetAddress" %>
+<%@ page import="java.util.*, java.lang.*" %>	<!-- 생략가능 -->
+<%@ page import="java.text.*, java.net.InetAddress" %>	<!-- 생략가능 -->
 <%@ page import="kr.go.gp.test.*" %>
 <c:set var="path1" value="${pageContext.request.contextPath }" />  
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>JSONTest3 Test</title>
 <link href="${path1 }/source/bulma.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -36,7 +36,8 @@
 				enctype:"UTF-8",
 				dataType:"json",
 	 			processData:false,
-				contentType:false, 
+				contentType:false,	//전부 다 받겠다는 뜻
+				async:true,
 				cache:false,
 				success:function(data){
 					$("#lst").empty();

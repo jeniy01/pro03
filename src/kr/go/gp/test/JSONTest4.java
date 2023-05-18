@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
+import org.json.JSONObject;
 import org.junit.Test;
 
 @WebServlet("/JSONTest4.do")
@@ -25,16 +24,15 @@ public class JSONTest4 extends HttpServlet {
 	}
 	
 	public void appTest(){
-		String result = "애플리케이션 테스트";
+		String result = "자바 애플리케이션 테스트";
 		json.put("result", result);
-		//System.out.println("애플리케이션 테스트");
 	}
-	
+
 	public void appTest(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		PrintWriter out = response.getWriter();
 		String result = "자바 웹앱 텍스트 데이터";
 		json.put("result", result);
-		out.println(json);
+		out.println(json);		
 	}
 	
 	@Test
