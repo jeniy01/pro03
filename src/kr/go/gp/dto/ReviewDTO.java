@@ -2,14 +2,14 @@ package kr.go.gp.dto;
 
 import java.util.Date;
 
-public class Review {
+public class ReviewDTO {
 	private String rnum;
 	private String rtitle;
 	private String rcontent;
 	private String rauthor;
 	private String rdate;
 	
-	public Review(){
+	public ReviewDTO(){
 		Date now = new Date();
 		this.rdate = now.toString();
 	}

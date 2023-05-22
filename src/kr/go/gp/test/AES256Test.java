@@ -15,7 +15,7 @@ import com.crypto.util.AES256;
 
 public class AES256Test {
 	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, InvalidParameterSpecException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
-		String plainText = "1111";
+		String plainText = "1234";
 		String key = "%03x";
 		
 		System.out.println("MD5 : "+ plainText + ", 암호화 : "+AES256.md5(plainText));
@@ -26,7 +26,7 @@ public class AES256Test {
 		String desText = AES256.decryptAES256(encText, key);
 		System.out.println("AES256 : "+encText+", 복호화 : "+desText);
 		
-		String[] strArr = {"1111","2222","3333","4444","5555","1234"};
+		String[] strArr = {"1234","1111"};
 		
 		for(String str : strArr){
 			String eText = AES256.encryptAES256(str, key);

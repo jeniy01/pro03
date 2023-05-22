@@ -2,14 +2,16 @@ package kr.go.gp.dto;
 
 import java.util.Date;
 
-public class Qna {
+public class QnaDTO {
 	private String qnum;
 	private String qtitle;
 	private String qcontent;
 	private String qauthor;
 	private String qdate;
+	private int lev;
+	private String parno;
 	
-	public Qna(){
+	public QnaDTO(){
 		Date now = new Date();
 		this.qdate = now.toString();
 	}
@@ -52,5 +54,21 @@ public class Qna {
 
 	public void setQdate(String qdate) {
 		this.qdate = qdate;
+	}
+
+	public int getLev() {
+		return lev;
+	}
+
+	public void setLev(int lev) {
+		this.lev = lev;
+	}
+
+	public String getParno() {
+		return parno;
+	}
+
+	public void setParno(String parno) {
+		this.parno = parno;
 	}
 }

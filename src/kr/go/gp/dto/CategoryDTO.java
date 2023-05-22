@@ -1,9 +1,17 @@
 package kr.go.gp.dto;
 
-public class Category {
+public class CategoryDTO {
+	private String ct;
 	private String cate;
 	private String catename;
 	private String categroup;
+	private String bnum;
+	public String getCt() {
+		return ct;
+	}
+	public void setCt(String ct) {
+		this.ct = ct;
+	}
 	public String getCate() {
 		return cate;
 	}
@@ -21,5 +29,11 @@ public class Category {
 	}
 	public void setCategroup(String categroup) {
 		this.categroup = categroup;
+	}
+	public String getBnum() {
+		return bnum;
+	}
+	public void setBnum(String bnum) {
+		this.bnum = bnum;
 	}
 }

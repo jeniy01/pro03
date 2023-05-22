@@ -2,16 +2,17 @@ package kr.go.gp.dto;
 
 import java.util.Date;
 
-public class User1 {
+public class User1DTO {
 	private String id;
 	private String pw;
+	private String hpw;
 	private String name;
 	private String tel;
 	private String addr;
 	private String email;
 	private String udate;
 	
-	public User1(){
+	public User1DTO(){
 		Date now = new Date();
 		this.udate = now.toString();
 	}
@@ -30,6 +31,14 @@ public class User1 {
 
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+
+	public String getHpw() {
+		return hpw;
+	}
+
+	public void setHpw(String hpw) {
+		this.hpw = hpw;
 	}
 
 	public String getName() {

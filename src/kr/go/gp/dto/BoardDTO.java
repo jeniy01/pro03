@@ -2,7 +2,7 @@ package kr.go.gp.dto;
 
 import java.util.Date;
 
-public class Board {
+public class BoardDTO {
 	private String bnum;
 	private String btitle;
 	private String bcontent;
@@ -13,8 +13,9 @@ public class Board {
 	private String pic3;
 	private String pic4;
 	private String pic5;
+	private String cate;
 	
-	public Board(){
+	public BoardDTO(){
 		Date now = new Date();
 		this.bdate = now.toString();
 	}
@@ -97,5 +98,13 @@ public class Board {
 
 	public void setPic5(String pic5) {
 		this.pic5 = pic5;
+	}
+
+	public String getCate() {
+		return cate;
+	}
+
+	public void setCate(String cate) {
+		this.cate = cate;
 	}
 }

@@ -13,10 +13,10 @@
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:2px solid #222; min-height:500px;">
 	<section class="page">
 		<div class="container-fluid">
-			<h2 class="title">메인 페이지 콘텐츠</h2>
+			<h2 class="title"></h2>
 		</div>
 	</section>
 </div>

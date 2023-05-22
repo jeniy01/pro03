@@ -2,7 +2,7 @@ package kr.go.gp.dto;
 
 import java.util.Date;
 
-public class Notice {
+public class NoticeDTO {
 	private String nnum;
 	private String ntitle;
 	private String ncontent;
@@ -10,7 +10,7 @@ public class Notice {
 	private String file1;
 	private String ndate;
 	
-	public Notice(){
+	public NoticeDTO(){
 		Date now = new Date();
 		this.ndate = now.toString();
 	}
