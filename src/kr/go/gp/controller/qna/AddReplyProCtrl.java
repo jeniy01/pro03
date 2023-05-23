@@ -24,8 +24,8 @@ public class AddReplyProCtrl extends HttpServlet {
 		
 		String parno = request.getParameter("parno");
 		qna.setParno(parno);
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
-		qna.setQnum(qnum);
+		/*int qnum = Integer.parseInt(request.getParameter("qnum"));
+		qna.setQnum(qnum);*/
 		qna.setQtitle(request.getParameter("qtitle"));
 		qna.setQcontent(request.getParameter("qcontent"));
 		qna.setQauthor(request.getParameter("qauthor"));

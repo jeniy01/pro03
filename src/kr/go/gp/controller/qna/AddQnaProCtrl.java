@@ -23,8 +23,8 @@ public class AddQnaProCtrl extends HttpServlet {
 		QnaDTO qna = new QnaDTO();
 		QnaDAO dao = new QnaDAO();
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
-		qna.setQnum(qnum);
+		/*int qnum = Integer.parseInt(request.getParameter("qnum"));
+		qna.setQnum(qnum);*/
 		qna.setQtitle(request.getParameter("qtitle"));
 		qna.setQcontent(request.getParameter("qcontent"));
 		qna.setQauthor(request.getParameter("qauthor"));
