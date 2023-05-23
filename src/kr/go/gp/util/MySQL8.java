@@ -38,13 +38,16 @@ public class MySQL8 {
 	//리뷰 관련 SQL
 	public final static String REV_GENERATOR = "select rnum from (select * from review order by rnum desc) where rownum = 1";
 	public final static String ADD_REVIEW = "insert into review values (?,?,?,?,default)";
+	public final static String REVIEW_LIST = "select * from review order by rnum desc";
+	public final static String REVIEW_SELECT = "select * from review where rnum=? order by rnum desc";
 	public final static String REVIEW_SELECT_ONE = "select * from review where rnum=?";
+	public final static String RNUM_BY_REVIEW = "select * from review where rnum=?";
 	public final static String ALL_REVIEW = "select * from review order by rnum desc";
 	public final static String UPDATE_REVIEW = "update review set rtitle=?, rcontent=? where rnum=?";
 	public final static String DELETE_REVIEW = "delete from review where rnum=?";
 
 	//Qna 관련 SQL
-	public final static String QNO_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
+	//public final static String QNO_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
 	public final static String ADD_QNA = "insert into qna values (?,?,?,?,default,1,?)";
 	public final static String ADD_REPLY = "insert into qna values (?,?,?,?,default,2,?)";
 	public final static String QNA_LIST = "select * from qna order by parno desc, qnum asc";

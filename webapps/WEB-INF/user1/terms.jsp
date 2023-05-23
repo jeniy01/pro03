@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.*, java.lang.*" %>
+<%@ page import="java.text.*, java.net.InetAddress" %>
 <c:set var="path1" value="${pageContext.request.contextPath }" />  
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,7 @@
 <style>
 .container is-fluid { width:1280px; }
 .agree_fr { width: 900px; white-space:pre-wrap; margin: 10px auto; padding: 24px; border:2px solid #eee; height:600px; overflow-y:auto; }
-.title { padding-top:36px; padding-bottom:20px; }
+.title { padding-top:36px; padding-bottom:20px; margin-left:470px; }
 </style>
 </head>
 <body>
@@ -19,7 +22,7 @@
 <section class="container is-fluid">
 	<h2 class="title">회원 약관 동의</h2>
 	<article class="agree_fr">
-		<h2 class="title">제1장 총칙</h2>
+		<h2>제1장 총칙</h2>
 		
 		제1조(목적) 이 약관은 회사가 온라인으로 제공하는 디지털콘텐츠(이하 "콘텐츠"라고 한다) 및 제반서비스의 이용과 관련하여 회사와 이용자와의 권리, 의무 및 책임사항 등을 규정함을 목적으로 합니다. 
 		제2조(정의) 이 약관에서 사용하는 용어의 정의는 다음과 같습니다.   
@@ -909,8 +912,8 @@
 				<label for="ck_item3" onclick="protocol()" class="form-check-label"><strong>전체 약관에 동의</strong></label>
 			</div>
 			<br><hr><br>
-			<div class="buttons">
-				  <button class="button is-primary">다음단계</button>
+			<div class="btn-group">
+				<button type="button" id="in_btn1" class="button is-primary">다음 단계</button>
 			</div>
 			<script>
 			var ck_item1 = document.getElementById("ck_item1");

@@ -3,7 +3,7 @@ package kr.go.gp.dto;
 import java.util.Date;
 
 public class QnaDTO {
-	private String qnum;
+	private int qnum;
 	private String qtitle;
 	private String qcontent;
 	private String qauthor;
@@ -16,11 +16,11 @@ public class QnaDTO {
 		this.qdate = now.toString();
 	}
 
-	public String getQnum() {
+	public int getQnum() {
 		return qnum;
 	}
 
-	public void setQnum(String qnum) {
+	public void setQnum(int qnum) {
 		this.qnum = qnum;
 	}
 

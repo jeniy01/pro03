@@ -3,7 +3,7 @@ package kr.go.gp.dto;
 import java.util.Date;
 
 public class NoticeDTO {
-	private String nnum;
+	private int nnum;
 	private String ntitle;
 	private String ncontent;
 	private String nauthor;
@@ -15,11 +15,11 @@ public class NoticeDTO {
 		this.ndate = now.toString();
 	}
 
-	public String getNnum() {
+	public int getNnum() {
 		return nnum;
 	}
 
-	public void setNnum(String nnum) {
+	public void setNnum(int nnum) {
 		this.nnum = nnum;
 	}
 

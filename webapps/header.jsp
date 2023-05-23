@@ -7,15 +7,16 @@
 	if(session!=null) sid = (String) session.getAttribute("sid");
 %>
 <style>
-.navbar { padding-top:20px; }
-.navbar-link { padding-left:80px; }
+.container is-fluid { width:1280px; }
+.navbar { padding-top:20px; width:1280px; }
+.navbar-link { padding-left:50px; }
 .logo { width:150px; height:56px; }
 </style>
 <header id="hd" class="container">
 	<div class="container is-fluid">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 		  <div class="navbar-brand">
-		    <a class="logo" href="">
+		    <a class="logo" href="${path1 }/">
 		      <img src="./img/logo.gif" width="126" height="56">
 		    </a>
 		    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -58,9 +59,9 @@
 		      <div class="navbar-item has-dropdown is-hoverable">
 		        <a class="navbar-link">여행길잡이</a>
 		        <div class="navbar-dropdown">
-		          <a href="${path1 }/" class="navbar-item">Q&A</a>
-		          <a href="${path1 }/" class="navbar-item">리뷰</a>
-		          <a href="${path1 }/" class="navbar-item">공지사항</a>
+		          <a href="${path1 }/QnaList.do" class="navbar-item">Q&A</a>
+		          <a href="${path1 }/ReviewList.do" class="navbar-item">리뷰</a>
+		          <a href="${path1 }/NoticeList.do" class="navbar-item">공지사항</a>
 		        </div>
 		      </div>
 		    </div>
@@ -69,22 +70,29 @@
 		        <div class="buttons">
 		        	<c:if test="${empty sid }">
 		          		<a href="${path }/User1Terms.do" class="button is-primary">회원가입</a>
-		          		<a href="${path }/Login.do" class="button is-light">로그인</a>
+		          		<a href="${path }/User1Login.do" class="button is-light">로그인</a>
 		          	</c:if>
 		          	<c:if test="${!empty sid }">
-						<a href="${path }/MyPage.do">마이페이지</a>
-						<a href="${path }/Logout.do">로그아웃</a>
+						<a href="${path }/MyPage.do" class="button is-primary">마이페이지</a>
+						<a href="${path }/User1Logout.do" class="button is-light">로그아웃</a>
 					</c:if>
 		        </div>
 		      </div>
-		    </div>
-		</nav>
-		<c:if test="${sid=='admin' }">
+		      <c:if test="${sid=='admin' }">
 			<div class="navbar-item">
 		        <div class="buttons">
-					<a href="${path1 }/UserList.do">회원 관리</a>
+					<a href="${path1 }/User1List.do" class="button is-primary">회원 관리</a>
 				</div>
 			</div>
 		</c:if>
+		    </div>
+		</nav>
+		<%-- <c:if test="${sid=='admin' }">
+			<div class="navbar-item">
+		        <div class="buttons">
+					<a href="${path1 }/User1List.do" class="button is-primary">회원 관리</a>
+				</div>
+			</div>
+		</c:if> --%>
 	</div>
 </header>

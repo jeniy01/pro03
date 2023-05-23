@@ -13,7 +13,7 @@ import org.junit.Test;
 
 @WebServlet("/JSONTest5.do")
 public class JSONTest5 {
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
