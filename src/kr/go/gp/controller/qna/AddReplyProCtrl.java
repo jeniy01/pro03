@@ -14,7 +14,7 @@ import kr.go.gp.model.QnaDAO;
 @WebServlet("/AddReplyPro.do")
 public class AddReplyProCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -23,9 +23,8 @@ public class AddReplyProCtrl extends HttpServlet {
 		QnaDAO dao = new QnaDAO();
 		
 		String parno = request.getParameter("parno");
+		/*qna.setQnum(dao.getqnumGenerator());*/
 		qna.setParno(parno);
-		/*int qnum = Integer.parseInt(request.getParameter("qnum"));
-		qna.setQnum(qnum);*/
 		qna.setQtitle(request.getParameter("qtitle"));
 		qna.setQcontent(request.getParameter("qcontent"));
 		qna.setQauthor(request.getParameter("qauthor"));

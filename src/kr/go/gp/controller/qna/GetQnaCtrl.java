@@ -20,7 +20,7 @@ public class GetQnaCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String qnum = request.getParameter("qnum");
+		int qnum = Integer.parseInt(request.getParameter("qnum")); 
 		
 		QnaDAO dao = new QnaDAO();
 		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>();

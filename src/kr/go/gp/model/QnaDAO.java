@@ -14,59 +14,16 @@ public class QnaDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	/*public String getQnumGenerator(){
-		String qnum = "";
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.QNO_GENERATOR);
-			rs = pstmt.executeQuery();
-			if(rs.next()){
-				qnum = rs.getString("qnum");
-			} else {
-				qnum = "00000000";
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(rs, pstmt, con);
-		}
-		
-		int tmp = Integer.parseInt(qnum) + 1;
-		if(qnum=="00000000"){
-			qnum = "0000000" + tmp;
-		} else if(tmp>=10000000){
-			qnum = tmp + "";
-		} else if(tmp>=1000000){
-			qnum = "0" + tmp;
-		} else if(tmp>=100000) {
-			qnum = "00" + tmp;
-		} else if(tmp>=10000) {
-			qnum = "000" + tmp;
-		} else if(tmp>=1000) {
-			qnum = "0000" + tmp;
-		} else if(tmp>=100) {
-			qnum = "00000" + tmp;
-		} else if(tmp>=10) {
-			qnum = "000000" + tmp;
-		} else {
-			qnum = "0000000" + tmp;
-		}
-		return qnum;
-	}*/
-	
 	public int addQna(QnaDTO qna){
 		int cnt = 0;
+		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.ADD_QNA);
-			pstmt.setInt(1, qna.getQnum());
-			pstmt.setString(2, qna.getQtitle());
-			pstmt.setString(3, qna.getQcontent());
-			pstmt.setString(4, qna.getQauthor());
-			pstmt.setInt(5, qna.getQnum());
-			cnt = pstmt.executeUpdate();
+			pstmt.setString(1, qna.getQtitle());
+			pstmt.setString(2, qna.getQcontent());
+			pstmt.setString(3, qna.getQauthor());
+			pstmt.setInt(4, qna.getQnum());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -74,19 +31,37 @@ public class QnaDAO {
 		} finally {
 			MySQL8.close(pstmt, con);
 		}
-		return cnt;
+		return cnt;		
 	}
-	
 	public int addReply(QnaDTO qna){
 		int cnt = 0;
+		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.ADD_REPLY);
-			pstmt.setInt(1, qna.getQnum());
+			pstmt.setInt(1 ,qna.getQnum());
 			pstmt.setString(2, qna.getQtitle());
 			pstmt.setString(3, qna.getQcontent());
 			pstmt.setString(4, qna.getQauthor());
-			pstmt.setString(5, qna.getParno());			
+			pstmt.setString(5, qna.getParno());
+			cnt = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(pstmt, con);
+		}
+		return cnt;		
+	}
+	
+	public int delQna(Integer qnum){
+		int cnt = 0;
+		
+		try {
+			con = MySQL8.getConnection();
+			pstmt = con.prepareStatement(MySQL8.DELETE_QNA);
+			pstmt.setInt(1, qnum);
 			cnt = pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -98,39 +73,22 @@ public class QnaDAO {
 		return cnt;
 	}
 	
-	public int delQna(String qnum){
+	public int delReply(Integer qnum){
 		int cnt = 0;
 		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.DELETE_QNA);
-			pstmt.setString(1, qnum);				
-			cnt = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(pstmt, con);
-		}
-		return cnt;		
-	}
-	
-	public int delReply(String qnum){
-		int cnt = 0;
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.DELETE_REPLY);
-			pstmt.setString(1, qnum);				
-			cnt = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(pstmt, con);
-		}
-		return cnt;		
-	}
+				con = MySQL8.getConnection();
+				pstmt = con.prepareStatement(MySQL8.DELETE_REPLY);
+				pstmt.setInt(1, qnum);				
+				cnt = pstmt.executeUpdate();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				MySQL8.close(pstmt, con);
+			}
+		return cnt;
+	}	
 	
 	public int updateReply(QnaDTO qna){
 		int cnt = 0;
@@ -150,7 +108,6 @@ public class QnaDAO {
 		}
 		return cnt;
 	}
-	
 	public ArrayList<QnaDTO> getQnaList(){
 		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>();
 		try {
@@ -178,12 +135,12 @@ public class QnaDAO {
 		return qnaList;
 	}
 	
-	public ArrayList<QnaDTO> getQna(String qnum){
+	public ArrayList<QnaDTO> getQna(Integer qnum){
 		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>();
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.QNA_SELECT);
-			pstmt.setString(1, qnum);
+			pstmt.setInt(1, qnum);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				QnaDTO qna = new QnaDTO();
@@ -193,7 +150,7 @@ public class QnaDAO {
 				qna.setQauthor(rs.getString("qauthor"));
 				qna.setQdate(rs.getString("qdate"));
 				qna.setLev(rs.getInt("lev"));
-				qna.setParno(rs.getString("parno"));				
+				qna.setParno(rs.getString("parno"));	
 				qnaList.add(qna);
 			}
 		} catch (ClassNotFoundException e) {
@@ -206,12 +163,12 @@ public class QnaDAO {
 		return qnaList;
 	} 
 	
-	public QnaDTO getQna2(String qnum){
+	public QnaDTO getQna2(Integer qnum){
 		QnaDTO qna = new QnaDTO();
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.QNA_SELECT_ONE);
-			pstmt.setString(1, qnum);
+			pstmt.setInt(1, qnum);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				qna.setQnum(rs.getInt("qnum"));
@@ -220,7 +177,7 @@ public class QnaDAO {
 				qna.setQauthor(rs.getString("qauthor"));
 				qna.setQdate(rs.getString("qdate"));
 				qna.setLev(rs.getInt("lev"));
-				qna.setParno(rs.getString("parno"));				
+				qna.setParno(rs.getString("parno"));	
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -232,12 +189,12 @@ public class QnaDAO {
 		return qna;
 	} 
 	
-	public ArrayList<QnaDTO> getReplyList(String qnum){
+	public ArrayList<QnaDTO> getReplyList(Integer qnum){
 		ArrayList<QnaDTO> qnaList = new ArrayList<QnaDTO>();
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.REPLY_LIST);
-			pstmt.setString(1, qnum);
+			pstmt.setInt(1, qnum);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				QnaDTO qna = new QnaDTO();
@@ -247,7 +204,7 @@ public class QnaDAO {
 				qna.setQauthor(rs.getString("qauthor"));
 				qna.setQdate(rs.getString("qdate"));
 				qna.setLev(rs.getInt("lev"));
-				qna.setParno(rs.getString("parno"));				
+				qna.setParno(rs.getString("parno"));	
 				qnaList.add(qna);
 			}
 		} catch (ClassNotFoundException e) {
@@ -258,5 +215,7 @@ public class QnaDAO {
 			MySQL8.close(rs, pstmt, con);
 		}
 		return qnaList;
-	}
+	} 
 }
+
+

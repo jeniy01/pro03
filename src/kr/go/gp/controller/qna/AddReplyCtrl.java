@@ -20,7 +20,7 @@ public class AddReplyCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String qnum = request.getParameter("parno"); 
+		int qnum = Integer.parseInt(request.getParameter("parno")); 
 		
 		QnaDAO dao = new QnaDAO();
 		QnaDTO qna = dao.getQna2(qnum);

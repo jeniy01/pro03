@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.go.gp.dto.NoticeDTO;
-import kr.go.gp.model.NoticeDAO;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import kr.go.gp.dto.NoticeDTO;
+import kr.go.gp.model.NoticeDAO;
 
 @WebServlet("/InsertNoticePro.do")
 public class InsertNoticeProCtrl extends HttpServlet {
@@ -40,17 +40,11 @@ public class InsertNoticeProCtrl extends HttpServlet {
 		NoticeDAO ndao = new NoticeDAO();
 		NoticeDTO noti = new NoticeDTO();
 		
-		//MultipartRequest의 옵션 내용
-		//1. request : 요청 받은 객체
-		//2. uploadFilePath : 서버상의 실제 디렉토리
-		//3. uploadFileSizeLimit : 최대 업로드 파일 크기
-		//4. encType : 인코딩 방법
-		//5. new DefaultFileRenamePolicy() : 동일한 이름이 존재하면 새로운 이름이 부여되며, 생략하면, 덮어쓰기 됨
 		try {
 			MultipartRequest multi = new MultipartRequest(request, uploadFilePath, 
 					uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
-			fileName = multi.getFilesystemName("file1"); // 업로드하고, 업로드된 파일의 이름 얻기
-			if (fileName == null) { // 파일이 업로드 되지 않았을때
+			fileName = multi.getFilesystemName("file1"); 
+			if (fileName == null) { 
 				System.out.print("파일 업로드 실패");
 			} else {
 				noti.setFile1("data/"+fileName);
@@ -66,14 +60,13 @@ public class InsertNoticeProCtrl extends HttpServlet {
 		noti.setNcontent(ncontent);
 		noti.setNauthor(nauthor);
 		int cnt = ndao.insertNotice(noti);	
-		if(cnt==0){ //글쓰기 실패
+		if(cnt==0){ 
 			String msg = "공지사항을 글이 등록되지 못했습니다.";
 			request.setAttribute("msg", msg);
 			
-			//디스패치로 view를 생성하여 noticeList.jsp로 요청 받은 notiList를 포워드
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/notice/insertNotice.jsp");
 			view.forward(request, response);
-		} else { //글쓰기 성공
+		} else { 
 			response.sendRedirect("NoticeList.do");
 		}
 	}

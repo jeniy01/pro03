@@ -1,33 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path1" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
+<c:set var="path1" value="${pageContext.request.contextPath }" />  
+<%
+request.setCharacterEncoding("utf-8");
+response.setContentType("text/html; charset=UTF-8");
+%>
+<!DOCTYPE html">
 <html>
 <head>
 <%@ include file="../../common.jsp" %>
 <title>공지사항 글 수정하기</title>
 <style>
-.container.is-fluid { width:1280px; }
-#fileSel1:checked ~ #file1 { display:none; }
-#fileSel2:checked ~ #file1 { display:block; }
+
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px;">
-	<div class="container is-fluid">
-		<h2>글 수정</h2>
+<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+	<div class="field" style="text-align:center;">
+		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>글 수정</strong></h2>
 		<p>${msg }</p>
 		<form action="${path1 }/UpdateNoticePro.do" method="post" enctype="multipart/form-data">
-			<table class="table">
+			<table class="table is-fullwidth">
 				<tbody>
 					<tr>
 						<th><label for="ntitle">제목</label></th>
 						<td>
-							<input type="hidden" name="nauthor" id="nauthor" value="${sid }">
+							<input type="hidden" name="author" id="author" value="${sid }">
 							<input type="hidden" name="nnum" id="nnum" value="${noti.nnum }">
 							<input type="text" name="ntitle" id="ntitle" value="${noti.ntitle }" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
 						</td>

@@ -19,6 +19,6 @@
 		}
 	}    
 	</script>
-    <p style="font-weight:bold;">copyright2010 gapyeong county. all rights reserved.</p>
+    <p style="font-weight:bold;"><img src="./img/logo/logo_footer.gif" alt="가평" style="padding-right:50px;">copyright2010 gapyeong county. all rights reserved.</p>
   </div>
 </footer>

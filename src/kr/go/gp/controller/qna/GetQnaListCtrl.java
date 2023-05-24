@@ -31,3 +31,4 @@ public class GetQnaListCtrl extends HttpServlet {
 		view.forward(request, response);
 	}
 }
+

@@ -24,8 +24,8 @@
 					<tr>
 						<th>아이디</th>
 						<td>
-							<div class="form-row">
-								<input type="text" name="id" id="id" placeholder="영문소문자 및 숫자를 혼용하여 15글자 이내로 아이디 입력" class="form-control" pattern="^[a-z0-9]{8,16}" maxlength="15" style="width:80%;display:inline-block;" value="${user.id }" readonly />
+							<div class="field">
+								<input type="text" name="id" id="id" placeholder="영문소문자 및 숫자를 혼용하여 15글자 이내로 아이디 입력" class="input" pattern="^[a-z0-9]{8,16}" maxlength="15" style="width:80%;display:inline-block;" value="${user.id }" readonly />
 							</div>
 						</td>
 					</tr>
@@ -33,7 +33,7 @@
 						<th>비밀번호</th>
 						<td>
 							<%-- <span>${user1.pw }</span> --%>
-							<input type="password" name="ppw" id="ppw" placeholder="비밀번호 입력" class="form-control" maxlength="15" value="" required />
+							<input type="password" name="ppw" id="ppw" placeholder="비밀번호 입력" class="input" maxlength="15" value="" required />
 							<input type="hidden" name="pw" id="pw" value="${user.pw }" />
 							<input type="hidden" name="hpw" id="hpw" value="${user.hpw }" />
 							<p>비밀번호는 최소 8자리에서 최대 16자리까지 숫자, 영문, 특수문자 각 1개 이상 포함되어야 함</p>
@@ -41,29 +41,29 @@
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
-						<td><input type="password" name="ppw2" id="ppw2" placeholder="비밀번호  확인 입력" class="form-control" value="" maxlength="15" /></td>
+						<td><input type="password" name="ppw2" id="ppw2" placeholder="비밀번호  확인 입력" class="input" value="" maxlength="15" /></td>
 						
 					</tr>
 					<tr>
 						<th>회원이름</th>
-						<td><input type="text" name="name" id="name" placeholder="이름 입력" class="form-control" value="${user.name }" required /></td>
+						<td><input type="text" name="name" id="name" placeholder="이름 입력" class="input" value="${user.name }" required /></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="email" id="email" placeholder="이메일 입력" class="form-control" value="${user.email }" required></td>
+						<td><input type="email" name="email" id="email" placeholder="이메일 입력" class="input" value="${user.email }" required></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td><input type="tel" name="tel" id="tel" maxlength="11" placeholder="전화번호 숫자만 입력 00000000000" class="form-control" value="${user.tel }" required></td>
+						<td><input type="tel" name="tel" id="tel" maxlength="11" placeholder="전화번호 숫자만 입력 00000000000" class="input" value="${user.tel }" required></td>
 					</tr>
 					<tr>
 						<th>주소</th>
 						<td>
 							<span style="display:block;">${user.addr }</span>
 							<input type="hidden" name="addr" id="addr" value="${user.addr }" />
-							<input type="text" name="address1" id="address1" placeholder="기본 주소 입력" class="form-control" /><br>
-							<input type="text" name="address2" id="address2" placeholder="상세 주소 입력" class="form-control" /><br>
-							<input type="text" name="postcode" id="postcode" style="width:160px;float:left;margin-right:20px;" placeholder="우편번호" class="form-control">
+							<input type="text" name="address1" id="address1" placeholder="기본 주소 입력" class="input" /><br>
+							<input type="text" name="address2" id="address2" placeholder="상세 주소 입력" class="input" /><br>
+							<input type="text" name="postcode" id="postcode" style="width:160px;float:left;margin-right:20px;" placeholder="우편번호" class="input">
 							<button type="button" id="post_btn" onclick="findAddr()" class="button is-small is-responsive" role="button">우편번호 검색</button>
 						</td>
 					</tr>
@@ -71,7 +71,7 @@
 						<td colspan="2">
 							<input type="submit" value="회원정보수정" class="button is-primary"/>
 							<input type="reset" value="취소" class="button is-light"/>
-							<a href="${path1 }/MyPage.do" class="button is-primary">마이페이지로 이동</a>
+							<a href="${path1 }/MyPage.do" class="button is-link">마이페이지로 이동</a>
 						</td>
 					</tr>
 				</tbody>

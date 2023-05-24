@@ -2,6 +2,7 @@ package kr.go.gp.controller.review;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,31 +12,60 @@ import javax.servlet.http.HttpServletResponse;
 import kr.go.gp.dto.ReviewDTO;
 import kr.go.gp.model.ReviewDAO;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 @WebServlet("/UpdateReviewPro.do")
 public class UpdateReviewProCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		ReviewDAO dao = new ReviewDAO();
+		String savePath = "/image";	
+		int uploadFileSizeLimit = 10 * 1024 * 1024;	
+		String encType = "UTF-8";		
+		ServletContext context = getServletContext();	
+		String uploadFilePath = context.getRealPath(savePath); 
+		System.out.println("지정된 업로드 디렉토리 : "+savePath);
+		System.out.println("서버 상의 실제 업로드되는 디렉토리 : "+uploadFilePath);
+		
+		String rtitle = "";
+		String rcontent = "";
+		String rauthor = "";
+		String fileName = "";
+		int rnum = 0;
+
+		try {
+			MultipartRequest multi = new MultipartRequest(request, uploadFilePath, 
+					uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
+			fileName = multi.getFilesystemName("file1"); 
+			if (fileName == null) { 
+				System.out.print("파일 업로드 실패~!");
+			} 
+			rnum = Integer.parseInt(multi.getParameter("rnum"));
+			rauthor = multi.getParameter("rauthor");
+			rtitle = multi.getParameter("rtitle");
+			rcontent = multi.getParameter("rcontent");
+		} catch (Exception e) {
+			System.out.print("예외 발생 : " + e);
+		}
+		
+		ReviewDAO rdao = new ReviewDAO();
 		ReviewDTO rev = new ReviewDTO();
-		
-		String rnum = request.getParameter("rnum");		
 		rev.setRnum(rnum);
-		
-		String rtitle = request.getParameter("rtitle"); 
 		rev.setRtitle(rtitle);
-		
-		String rcontent = request.getParameter("rcontent");
 		rev.setRcontent(rcontent);
-		
-		int cnt = dao.updateReview(rev);
-		if(cnt>0){
-			response.sendRedirect("UpdateReview.do?rnum="+rnum);
-		} else {
-			response.sendRedirect("UpdateReview.do?rnum="+rnum);
+		rev.setFile1(fileName);
+		rev.setRauthor(rauthor);
+		int cnt = rdao.updateReview(rev);
+		if(cnt==0){ 
+			String msg = "리뷰 글을 수정하지 못했습니다.";
+			request.setAttribute("msg", msg);
+			response.sendRedirect("UpdateReview.do?rnum="+rev.getRnum());
+		} else { 
+			response.sendRedirect("ReviewList.do");
 		}
 	}
 }

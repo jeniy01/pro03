@@ -1,24 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path1" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
+<%
+request.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=utf-8");
+%>
+<c:set var="path1" value="${pageContext.request.contextPath }" />  
+<!DOCTYPE html">
 <html>
 <head>
 <%@ include file="../../common.jsp" %>
 <title>공지사항 글 상세보기</title>
 <style>
-.container.is-fluid { width:1280px; }
+
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px;">
-	<div class="container is-fluid">
-		<h2>글 상세보기</h2>
-		<table class="table">
+<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+	<div class="field" style="text-align:center;">
+		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>글 상세보기</strong></h2>
+		<table class="table is-fullwidth">
 			<tbody>
 				<tr>
 					<th>글 번호</th>
@@ -56,14 +60,10 @@
 			</tbody>
 		</table>
 		<div class="btn-group">
-			<a href="${path1 }/NoticeList.do" class="button is-light">글 목록</a>
-			<c:if test="${!empty sid }">
-			<a href="${path1 }/InsertNotice.do" class="button is-primary">글 등록</a>
-			</c:if>
-			<c:if test="${noti.nauthor.equals(sid) || sid.equals('admin') }">
-			<a href="${path1 }/UpdateNotice.do?nnum=${noti.nnum }" class="button is-primary">글 변경</a>
-			<a href="${path1 }/DelNotice.do?nnum=${noti.nnum }" class="button is-danger">글 삭제</a>
-			</c:if>
+			<a href="${path1 }/NoticeList.do" class="button is-light">목록보기</a>
+			<a href="${path1 }/InsertNotice.do" class="button is-primary">글쓰기</a>
+			<a href="${path1 }/UpdateNotice.do?nnum=${noti.nnum }" class="button is-link">글수정</a>
+			<a href="${path1 }/DelNotice.do?nnum=${noti.nnum }" class="button is-danger">글삭제</a>
 		</div>
 	</div>
 </div>

@@ -19,6 +19,7 @@ public class MySQL8 {
 	public final static String SAMPLE_DELETE = "delete from sample1 where item1=?";
 	
 	//공지사항 관련 SQL
+	public final static String NNUM_GENERATER="select nnum from (select * from notice order by nnum desc) where rownum = 1";
 	public final static String NOTICE_SELECT_ALL = "select * from notice order by nnum desc";
 	public final static String NOTICE_SELECT_ONE = "select * from notice where nnum=?";
 	public final static String INSERT_NOTICE = "insert into notice values (?,?,?,?,?,default)";
@@ -37,17 +38,15 @@ public class MySQL8 {
 	
 	//리뷰 관련 SQL
 	public final static String REV_GENERATOR = "select rnum from (select * from review order by rnum desc) where rownum = 1";
-	public final static String ADD_REVIEW = "insert into review values (?,?,?,?,default)";
-	public final static String REVIEW_LIST = "select * from review order by rnum desc";
-	public final static String REVIEW_SELECT = "select * from review where rnum=? order by rnum desc";
+	public final static String ALL_REVIEW = "select * from review";
 	public final static String REVIEW_SELECT_ONE = "select * from review where rnum=?";
-	public final static String RNUM_BY_REVIEW = "select * from review where rnum=?";
-	public final static String ALL_REVIEW = "select * from review order by rnum desc";
-	public final static String UPDATE_REVIEW = "update review set rtitle=?, rcontent=? where rnum=?";
+	public final static String ADD_REVIEW = "insert into review values (default,?,?,?,?,default)";
+	public final static String UPDATE_REVIEW = "update review set rcontent=?, rtitle=? where rnum=?";
+	public final static String UPDATE_REVIEW2 = "update review set rcontent=?, rtitle=?, file1=? where rnum=?";
 	public final static String DELETE_REVIEW = "delete from review where rnum=?";
 
 	//Qna 관련 SQL
-	//public final static String QNO_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
+	public final static String QNUM_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
 	public final static String ADD_QNA = "insert into qna values (?,?,?,?,default,1,?)";
 	public final static String ADD_REPLY = "insert into qna values (?,?,?,?,default,2,?)";
 	public final static String QNA_LIST = "select * from qna order by parno desc, qnum asc";
@@ -61,19 +60,16 @@ public class MySQL8 {
 	public final static String DELETE_REPLY = "delete from qna where qnum=?";
 
 	//게시판 관련 SQL
-	public final static String BOARD_SELECT_ALL = "select * from board order by bnum desc";
-	public final static String BOARD_SELECT = "select * from board where bnum=?";
 	public final static String BOARD_CATENAME_SELECT = "select * from category where cate=?";
+	public final static String BOARD_SELECT_ALL = "select * from board order by cate desc";
+	public final static String BOARD_SELECT_ONE = "select * from board where bnum=?";
 	public final static String BOARD_CATE_SELECT = "select * from board where cate=?";
-	public final static String FIRST_CATEGORY_SELECT = "select distinct substr(cate,1,2) as ct, categroup from category group by substr(cate,1,2), categroup order by ct";
-	public final static String SECOND_CATEGORY_SELECT = "select cate, catename from category where cate like ?||'%' order by cate";
-	public final static String BNUM_GENERATOR = "select bnum from (select * from board where cate=? order by bnum desc) where rownum = 1";
+	public final static String BOARD_CATE_SELECT2 = "select * from board where cate like ?||'%'";
+	public final static String BNUM_GENERATOR = "select bnum from (select * from board where cate=? order by bnum desc) where rownum = 1";	
 	public final static String INSERT_BOARD = "insert into board values(?,?,?,?,default,?,?,?,?,?,?)";
 	public final static String UPDATE_BOARD = "update board set btitle=?, bcontent=? where bnum=?";
 	public final static String UPDATE_BOARD2 = "update board set btitle=?, bcontent=?, pic1=?, pic2=?, pic3=?, pic4=?, pic5=? where bnum=?";
 	public final static String DELETE_BOARD = "delete from board where bnum=?";
-	//public final static String CATEGORY_ALL = "select * from category order by cate asc";
-	//public final static String CATEGORY_SELECT = "select * from category where categroup=? order by cate asc";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(driver);

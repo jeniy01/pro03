@@ -10,13 +10,13 @@
 <%@ include file="../../common.jsp" %>
 <title>질문 및 답변 목록</title>
 <style>
-.container.is-fluid { width:1280px; }
+.container-fluid { width:1280px; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
-	<div class="container is-fluid">
+<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+	<div class="field">
 		<h2>질문 및 답변</h2>
 		<table class="table">
 			<thead>
@@ -30,7 +30,7 @@
 					<c:set var="cnt" value="${cnt=cnt+1 }" />
 					<td>${cnt }</td>
 					<td>
-						<a href="${path1 }/GetQna.do?qnum=${qna.qnum }">${qna.qtitle }</a>
+						<a href="${path1 }/GetQna.do?qnum=${qna.qnum }">${qna.title }</a>
 					</td>
 					</c:if>
 					<c:if test="${qna.lev==2 }">
@@ -39,11 +39,10 @@
 					</td>
 					</c:if>
 					<td>${qna.qauthor }</td>
-					<td>${qna.qdate }</td>
-					<%-- <td>
-						<fmt:parseDate value="${qna.qdate }" var="qdate" pattern="yyyy-MM-dd HH:mm:ss" />
+					<td>
+						<fmt:parseDate value="${qna.qdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
 						<fmt:formatDate value="${qdate }" pattern="yyyy년 MM월 dd일" />
-					</td> --%>
+					</td>
 				</tr>
 				</c:forEach>
 				<c:if test="${empty qnaList }">
@@ -55,7 +54,7 @@
 		</table>
 		<c:if test="${!empty sid }">
 		<div class="btn-group">
-			<a href="${path1 }/AddQna.do" class="button is-primary">질문하기</a>
+			<a href="${path1 }/AddQna.do" class="btn btn-primary">질문하기</a>
 		</div>
 		</c:if>
 	</div>

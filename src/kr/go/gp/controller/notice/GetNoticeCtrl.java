@@ -32,34 +32,33 @@ public class GetNoticeCtrl extends HttpServlet {
 		NoticeDAO ndao = new NoticeDAO();
 		NoticeDTO noti = new NoticeDTO();
 		noti = ndao.getNotice(nnum);
-		String file1 = "";
-		String filepath1 = "";
+		String file1 = ""; 
+		String filepath1 = "";		
 		
 		if(noti.getFile1()!=null){
-			file1 = noti.getFile1().substring(5); 
+			file1 = noti.getFile1().substring(5);
 			filepath1 = noti.getFile1().substring(0,4);
-			file1 = URLEncoder.encode(file1, "UTF-8");	
-		}
+			file1 = URLEncoder.encode(file1, "UTF-8");
+		}		
 		request.setAttribute("file1", file1);
 		request.setAttribute("filepath1", filepath1);
 		request.setAttribute("noti", noti);
-
+		
 		HttpSession ses = request.getSession();
 		String id = (String) ses.getAttribute("sid");
 		
 		User1DAO udao = new User1DAO();
-		User1DTO user = new User1DTO(); 
-		try {
-			user = udao.myInfo(id);
-		} catch (InvalidKeyException | NoSuchPaddingException
-				| NoSuchAlgorithmException | InvalidKeySpecException
-				| InvalidAlgorithmParameterException | BadPaddingException
-				| IllegalBlockSizeException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("user", user);
+		User1DTO user = new User1DTO();
+			try {
+				user = udao.myInfo(id);
+			} catch (InvalidKeyException | NoSuchPaddingException
+					| NoSuchAlgorithmException | InvalidKeySpecException
+					| InvalidAlgorithmParameterException | BadPaddingException
+					| IllegalBlockSizeException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("user", user);
 		
-		//디스패치로 view를 생성하여 getNotice.jsp로 요청 받은 noti를 포워드
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/notice/getNotice.jsp");
 		view.forward(request, response);
 	}

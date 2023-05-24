@@ -10,36 +10,36 @@
 <%@ include file="../../common.jsp" %>
 <title>답변 상세보기</title>
 <style>
-.container.is-fluid { width:1280px; }
+.container-fluid { width:1280px; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
-	<div class="container is-fluid">
+<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+	<div class="field">
 		<h2>답변글 상세보기</h2>
 		<table class="table">
 			<tbody>
 				<tr>
 					<th>글 번호</th>
-					<td>${qn.qnum }</td>
+					<td>${qna.qnum }</td>
 				</tr>
 				<tr>
 					<th>질문 제목</th>
-					<td>${qn.qtitle }</td>
+					<td>${qna.qtitle }</td>
 				</tr>
 				<tr>
 					<th>질문 내용</th>
-					<td>${qn.qcontent }</td>
+					<td>${qna.qcontent }</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${qn.qauthor }</td>
+					<td>${qna.qauthor }</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
 					<td>
-						<fmt:parseDate value="${qn.qdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:parseDate value="${qna.qdate }" var="qdate" pattern="yyyy-MM-dd HH:mm:ss" />
 						<fmt:formatDate value="${qdate }" pattern="yyyy년 MM월 dd일" />
 					</td>
 				</tr>
@@ -47,10 +47,10 @@
 		</table>
 		<hr>
 		<div class="btn-group">
-			<a href="${path1 }/QnaList.do" class="button is-light">글 목록</a>
-			<c:if test="${qna.qauthor.equals(sid) || sid.equals('admin') }">
-			<a href="${path1 }/UpdateReply.do?qnum=${qn.qnum }" class="button is-primary">답변 변경</a>
-			<a href="${path1 }/DelReply.do?qnum=${qn.qnum }" class="button is-danger">답변 삭제</a>
+			<a href="${path1 }/QnaList.do" class="btn btn-primary">글 목록</a>
+			<c:if test="${qna.author.equals(sid) || sid.equals('admin') }">
+			<a href="${path1 }/UpdateReply.do?qnum=${qna.qnum }" class="btn btn-primary">답변 변경</a>
+			<a href="${path1 }/DelReply.do?qnum=${qna.qnum }" class="btn btn-primary">답변 삭제</a>
 			</c:if>
 		</div>
 	</div>

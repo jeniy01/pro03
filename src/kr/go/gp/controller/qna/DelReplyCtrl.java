@@ -19,7 +19,7 @@ public class DelReplyCtrl extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		QnaDAO dao = new QnaDAO();	
-		String qnum = request.getParameter("qnum");
+		int qnum = Integer.parseInt(request.getParameter("qnum")); 
 
 		
 		int cnt = dao.delReply(qnum);
@@ -33,3 +33,4 @@ public class DelReplyCtrl extends HttpServlet {
 		}
 	}
 }
+

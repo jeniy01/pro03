@@ -22,7 +22,7 @@ public class UpdateReplyProCtrl extends HttpServlet {
 		QnaDTO qna = new QnaDTO();
 		QnaDAO dao = new QnaDAO();
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		int qnum = Integer.parseInt(request.getParameter("qnum")); 
 		qna.setQnum(qnum);
 		qna.setQtitle(request.getParameter("qtitle"));
 		qna.setQcontent(request.getParameter("qcontent"));
@@ -39,3 +39,4 @@ public class UpdateReplyProCtrl extends HttpServlet {
 		}
 	}
 }
+

@@ -13,7 +13,8 @@ public class NoticeDAO {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
+	String sql="";
+	
 	public ArrayList<NoticeDTO> noticeListAll(){
 		ArrayList<NoticeDTO> notiList = new ArrayList<NoticeDTO>();
 		try {
@@ -32,12 +33,12 @@ public class NoticeDAO {
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (SQLException e){
-			e.printStackTrace();			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		MySQL8.close(rs, pstmt, con);
+		MySQL8.close(rs,  pstmt, con);
 		return notiList;
 	}
 	
@@ -56,16 +57,39 @@ public class NoticeDAO {
 				noti.setFile1(rs.getString("file1"));
 				noti.setNdate(rs.getString("ndate"));
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
-		} catch (SQLException e){
+		} catch (SQLException e){	
 			e.printStackTrace();			
-		} catch (Exception e){
+		} catch (Exception e){	
 			e.printStackTrace();
 		}
 		MySQL8.close(rs, pstmt, con);
 		return noti;
 	}
+	
+	public int getNnumGenerator(){
+		int nnum = 0;
+		try {
+			con = MySQL8.getConnection();
+			pstmt = con.prepareStatement(MySQL8.NNUM_GENERATER);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				nnum = rs.getInt("nnum");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(rs, pstmt, con);
+		}
+		
+		int tmp = (nnum) + 1;
+		nnum = tmp + 0;
+		return nnum;
+	}
+	
 	
 	public int insertNotice(NoticeDTO noti){
 		int cnt = 0;
@@ -76,16 +100,17 @@ public class NoticeDAO {
 			pstmt.setString(2, noti.getNtitle());
 			pstmt.setString(3, noti.getNcontent());
 			pstmt.setString(4, noti.getNauthor());
-			pstmt.setString(5, "data/"+noti.getFile1());
+			pstmt.setString(5, noti.getFile1());
 			cnt = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
-		} catch (SQLException e){
+		} catch (SQLException e){	
 			e.printStackTrace();			
-		} catch (Exception e){
+		} catch (Exception e){	
 			e.printStackTrace();
 		}
 		MySQL8.close(pstmt, con);
+		
 		return cnt;
 	}
 	
@@ -104,9 +129,9 @@ public class NoticeDAO {
 				noti.setFile1(rs.getString("file1"));
 				noti.setNdate(rs.getString("ndate"));
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
-		} catch (SQLException e){
+		} catch (SQLException e){	
 			e.printStackTrace();			
 		} catch (Exception e){
 			e.printStackTrace();
@@ -132,11 +157,11 @@ public class NoticeDAO {
 				pstmt.setInt(4, noti.getNnum());
 			}
 			cnt = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
-		} catch (SQLException e){
+		} catch (SQLException e){	
 			e.printStackTrace();			
-		} catch (Exception e){
+		} catch (Exception e){	
 			e.printStackTrace();
 		}
 		MySQL8.close(pstmt, con);
@@ -151,11 +176,11 @@ public class NoticeDAO {
 			pstmt.setString(1, nnum);
 
 			cnt = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { 
 			e.printStackTrace();
-		} catch (SQLException e){
+		} catch (SQLException e){	
 			e.printStackTrace();			
-		} catch (Exception e){
+		} catch (Exception e){	
 			e.printStackTrace();
 		}
 		MySQL8.close(pstmt, con);

@@ -17,7 +17,7 @@ public class AddQnaCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String msg = "질문을 입력해주세요.";
+		String msg = "질문을 시작합니다.";
 		request.setAttribute("msg", msg);
 		
 		//디스패치로 view를 생성하여 noticeList.jsp로 요청 받은 notiList를 포워드

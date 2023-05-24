@@ -19,7 +19,7 @@ public class DelQnaCtrl extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		QnaDAO dao = new QnaDAO();	
-		String qnum = request.getParameter("qnum");
+		int qnum = Integer.parseInt(request.getParameter("qnum")); 
 
 		int cnt = dao.delQna(qnum);
 		

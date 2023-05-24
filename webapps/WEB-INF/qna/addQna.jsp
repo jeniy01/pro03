@@ -10,36 +10,36 @@
 <%@ include file="../../common.jsp" %>
 <title>질문 하기</title>
 <style>
-.container.is-fluid { width:1280px; }
+.container-fluid { width:1280px; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
-	<div class="container is-fluid">
+<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+	<div class="field">
 		<h2>질문 글 쓰기</h2>
 		<p>${msg }</p>
 		<form action="${path1 }/AddQnaPro.do" method="post">
 			<table class="table">
 				<tbody>
 					<tr>
-						<th><label for="title">질문 제목</label></th>
+						<th><label for="qtitle">질문 제목</label></th>
 						<td>
 							<input type="hidden" name="lev" id="lev" value="1">
-							<input type="hidden" name="author" id="author" value="${sid }">
-							<input type="text" name="title" id="title" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
+							<input type="hidden" name="qauthor" id="qauthor" value="${sid }">
+							<input type="text" name="qtitle" id="qtitle" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
 						</td>
 					</tr>
 					<tr>
-						<th><label for="content">질문 내용</label></th>
+						<th><label for="qcontent">질문 내용</label></th>
 						<td>
-							<textarea rows="10" cols="100" name="content" id="content" maxlength="990" title="1000자 내로 작성" class="form-control"></textarea>
+							<textarea rows="10" cols="100" name="qcontent" id="qcontent" maxlength="990" title="1000자 내로 작성" class="form-control"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="글쓰기" class="button is-primary">
-							<a href="${path1 }/QnaList.do" class="button is-light">글 목록</a>				
+							<input type="submit" value="글쓰기" class="btn btn-primary">
+							<a href="${path1 }/QnaList.do" class="btn btn-primary">글 목록</a>				
 						</td>
 					</tr>
 				</tbody>

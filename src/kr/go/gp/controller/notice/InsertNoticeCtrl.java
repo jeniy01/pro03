@@ -17,8 +17,8 @@ public class InsertNoticeCtrl extends HttpServlet {
 		String msg = "공지사항을 등록합니다.";
 		request.setAttribute("msg", msg);
 		
-		//디스패치로 view를 생성하여 noticeList.jsp로 요청 받은 notiList를 포워드
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/notice/insertNotice.jsp");
 		view.forward(request, response);
 	}
 }
+

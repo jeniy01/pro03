@@ -1,6 +1,7 @@
 package kr.go.gp.controller.review;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +18,21 @@ public class UpdateReviewCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String rnum = request.getParameter("rnum");
+		int rnum = Integer.parseInt(request.getParameter("rnum"));
+		ReviewDAO rdao = new ReviewDAO();
+		ReviewDTO rev = new ReviewDTO();
 		
-		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO rev = dao.getRnumByReview(rnum);
+		rev = rdao.getReviewSelectOne(rnum);
 		
+		String file1 = rev.getFile1().substring(5);
+		String filepath1 = rev.getFile1().substring(0,4);
+
+		file1 = URLEncoder.encode(file1, "UTF-8");
+		
+		request.setAttribute("file1", file1);
+		request.setAttribute("filepath1", filepath1);
 		request.setAttribute("rev", rev);
 		
-		//디스패치로 view를 생성하여 proList.jsp로 요청 받은 proList를 포워드
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/review/updateReview.jsp");
 		view.forward(request, response);
 	}

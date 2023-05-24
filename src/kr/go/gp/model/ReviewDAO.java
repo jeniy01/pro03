@@ -13,15 +13,15 @@ public class ReviewDAO {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
-	public String getRevGenerator(){
-		String rnum = "";
+	
+	public int getRevGenerator(){
+		int rnum = 0;
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.REV_GENERATOR);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				rnum = rs.getString("rnum");
+				rnum = rs.getInt("rnum");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -31,68 +31,48 @@ public class ReviewDAO {
 			MySQL8.close(rs, pstmt, con);
 		}
 		
-		int tmp = Integer.parseInt(rnum) + 1;
-		rnum = tmp + "";
+		int tmp = (rnum) + 1;
+		rnum = tmp + 0;
 		return rnum;
 	}
-
-	public int addReview(ReviewDTO rev){
-		int cnt = 0;
+	
+	public int insertReview(ReviewDTO rev){
+		int cnt = 0;		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.ADD_REVIEW);
-			pstmt.setString(1, rev.getRnum());
-			pstmt.setString(2, rev.getRtitle());
-			pstmt.setString(3, rev.getRcontent());
-			pstmt.setString(4, rev.getRauthor());
+			//pstmt.setInt(1, rev.getRnum());
+			pstmt.setString(1, rev.getRtitle());
+			pstmt.setString(2, rev.getRcontent());
+			pstmt.setString(3, rev.getRauthor());
+			pstmt.setString(4, rev.getFile1());
 			cnt = pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			MySQL8.close(pstmt, con);
+		} catch (Exception e){	
+			e.printStackTrace();
 		}
+		MySQL8.close(pstmt, con);		
 		return cnt;
 	}
-
-	public ReviewDTO getReviewSelectOne(String rnum){
+	
+	public ReviewDTO getReviewSelectOne(int rnum){
 		ReviewDTO rev = new ReviewDTO();
+		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.REVIEW_SELECT_ONE);
-			pstmt.setString(1, rnum);
+			pstmt.setInt(1,  rnum);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				rev.setRnum(rs.getString("rnum"));
+				rev.setRnum(rs.getInt("rnum"));
 				rev.setRtitle(rs.getString("rtitle"));
 				rev.setRcontent(rs.getString("rcontent"));
 				rev.setRauthor(rs.getString("rauthor"));
 				rev.setRdate(rs.getString("rdate"));
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(rs, pstmt, con);
-		}
-		return rev;
-	}
-	
-	public ReviewDTO getRnumByReview(String rnum){
-		ReviewDTO rev = new ReviewDTO();
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.RNUM_BY_REVIEW);
-			pstmt.setString(1, rnum);
-			rs = pstmt.executeQuery();
-			if(rs.next()){
-				rev.setRnum(rs.getString("rnum"));
-				rev.setRtitle(rs.getString("rtitle"));
-				rev.setRcontent(rs.getString("rcontent"));
-				rev.setRauthor(rs.getString("rauthor"));
-				rev.setRdate(rs.getString("rdate"));
+				rev.setFile1(rs.getString("file1"));
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -105,30 +85,40 @@ public class ReviewDAO {
 	}
 	
 	public int updateReview(ReviewDTO rev){
-		int cnt = 0;
+		int cnt = 0;		
 		try {
 			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.UPDATE_REVIEW);
-			pstmt.setString(1, rev.getRtitle());
-			pstmt.setString(2, rev.getRcontent());
-			pstmt.setString(3, rev.getRnum());
+			if(rev.getFile1()==null){
+				pstmt = con.prepareStatement(MySQL8.UPDATE_REVIEW);
+				pstmt.setString(1, rev.getRcontent());
+				pstmt.setString(2, rev.getRtitle());
+				pstmt.setInt(3, rev.getRnum());
+			}else {
+				pstmt = con.prepareStatement(MySQL8.UPDATE_REVIEW2);
+				pstmt.setString(1, rev.getRcontent());
+				pstmt.setString(2, rev.getRtitle());
+				pstmt.setInt(3, rev.getRnum());
+				pstmt.setString(4, rev.getFile1());
+			}		
 			cnt = pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			MySQL8.close(pstmt, con);
+		} catch (Exception e){
+			e.printStackTrace();
 		}
-		return cnt;
+			MySQL8.close(pstmt, con);
+			return cnt;
 	}
 	
-	public int deleteReview(String rnum){
+	public int deleteReview(int rnum){
 		int cnt = 0;
+		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.DELETE_REVIEW);
-			pstmt.setString(1, rnum);
+			pstmt.setInt(1, rnum);
 			cnt = pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -142,17 +132,19 @@ public class ReviewDAO {
 	
 	public ArrayList<ReviewDTO> getAllReview(){
 		ArrayList<ReviewDTO> rList = new ArrayList<ReviewDTO>();
+		
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.ALL_REVIEW);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				ReviewDTO rev = new ReviewDTO();
-				rev.setRnum(rs.getString("rnum"));
+				rev.setRnum(rs.getInt("rnum"));
 				rev.setRtitle(rs.getString("rtitle"));
 				rev.setRcontent(rs.getString("rcontent"));
 				rev.setRauthor(rs.getString("rauthor"));
 				rev.setRdate(rs.getString("rdate"));
+				rev.setFile1(rs.getString("file1"));
 				rList.add(rev);
 			}
 		} catch (ClassNotFoundException e) {
@@ -165,78 +157,4 @@ public class ReviewDAO {
 		return rList;
 	}
 	
-	public ArrayList<ReviewDTO> getReviewList(){
-		ArrayList<ReviewDTO> rList = new ArrayList<ReviewDTO>();
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.REVIEW_LIST);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				ReviewDTO rev = new ReviewDTO();
-				rev.setRnum(rs.getString("rnum"));
-				rev.setRtitle(rs.getString("rtitle"));
-				rev.setRcontent(rs.getString("rcontent"));
-				rev.setRauthor(rs.getString("rauthor"));
-				rev.setRdate(rs.getString("rdate"));
-				rList.add(rev);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(rs, pstmt, con);
-		}
-		return rList;
-	}
-	
-	public ArrayList<ReviewDTO> getReview(String rnum){
-		ArrayList<ReviewDTO> rList = new ArrayList<ReviewDTO>();
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.REVIEW_SELECT);
-			pstmt.setString(1, rnum);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				ReviewDTO rev = new ReviewDTO();
-				rev.setRnum(rs.getString("rnum"));
-				rev.setRtitle(rs.getString("rtitle"));
-				rev.setRcontent(rs.getString("rcontent"));
-				rev.setRauthor(rs.getString("rauthor"));
-				rev.setRdate(rs.getString("rdate"));
-				rList.add(rev);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(rs, pstmt, con);
-		}
-		return rList;
-	} 
-	
-	public ReviewDTO getReview2(String rnum){
-		ReviewDTO rev = new ReviewDTO();
-		try {
-			con = MySQL8.getConnection();
-			pstmt = con.prepareStatement(MySQL8.REVIEW_SELECT_ONE);
-			pstmt.setString(1, rnum);
-			rs = pstmt.executeQuery();
-			if(rs.next()){
-				rev.setRnum(rs.getString("rnum"));
-				rev.setRtitle(rs.getString("rtitle"));
-				rev.setRcontent(rs.getString("rcontent"));
-				rev.setRauthor(rs.getString("rauthor"));
-				rev.setRdate(rs.getString("rdate"));			
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			MySQL8.close(rs, pstmt, con);
-		}
-		return rev;
-	} 
 }

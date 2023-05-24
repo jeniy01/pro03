@@ -18,16 +18,13 @@ public class GetReviewListCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+		ReviewDAO rdao = new ReviewDAO();
+		ArrayList<ReviewDTO> revList = new ArrayList<ReviewDTO>();
+		revList = rdao.getAllReview();
+		request.setAttribute("revList", revList);
 		
-		ReviewDAO dao = new ReviewDAO();
-		ArrayList<ReviewDTO> rList = new ArrayList<ReviewDTO>();
-		rList = dao.getReviewList();
-		request.setAttribute("rList", rList);
-		
-		//디스패치로 view를 생성하여 noticeList.jsp로 요청 받은 notiList를 포워드
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/review/reviewList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/review/revList.jsp");
 		view.forward(request, response);
 	}
+
 }

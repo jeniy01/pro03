@@ -24,18 +24,17 @@ public class UpdateNoticeCtrl extends HttpServlet {
 		
 		noti = ndao.updateNotice(nnum);
 		
-		//한글 파일 이름 인코딩 처리
-		String file1 = noti.getFile1().substring(5); 
+		String file1 = noti.getFile1().substring(5);
 		String filepath1 = noti.getFile1().substring(0,4);
 		
-		file1 = URLEncoder.encode(file1, "UTF-8");	
+		file1 = URLEncoder.encode(file1, "UTF-8");
 		
 		request.setAttribute("file1", file1);
 		request.setAttribute("filepath1", filepath1);
 		request.setAttribute("noti", noti);
 		
-		//디스패치로 view를 생성하여 getNotice.jsp로 요청 받은 noti를 포워드
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/notice/updateNotice.jsp");
 		view.forward(request, response);
 	}
 }
+
