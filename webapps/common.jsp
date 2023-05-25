@@ -13,8 +13,8 @@
 <meta name="description" content="가평 문화 관광 안내 사이트에 오신 것을 환영합니다.">
 <meta name="author" content="by. jeniy01">
 
-<!-- 파비콘 설정
-<link rel="shortcut icon" href="${common_path }/img/favicon.ico"> -->
+<!-- 파비콘 설정 -->
+<link rel="shortcut icon" href="${common_path }/img/favicon/favicon.png">
 
 <!-- https://jeniy01.github.io/web3 -->
 <!-- 오픈그래프 설정 -->

@@ -3,19 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="path1" value="${pageContext.request.contextPath }" />  
+<%-- <%@ page import="java.util.*, java.lang.*" %>
+<%@ page import="java.text.*, java.net.InetAddress" %> --%>
+<c:set var="path1" value="${pageContext.request.contextPath }" />
+<%-- <c:set var="path1" value="<%=request.getContextPath() %>" /> --%>
 <%
-request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=UTF-8");
 %>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../../common.jsp" %>
 <title>공지사항</title>
-<style>
-
-</style>
+<%-- <link rel="stylesheet" href="${path1 }/resource/datatables.min.css">
+<script src="${path1 }/resource/datatables.min.js"></script>
+<script>
+	$(document).ready( function () {
+	    $('#tb1').DataTable({
+	    	  aaSorting: []
+	    	  //, order : [[ 0, "asc" ]]
+	   	});
+	});
+</script> --%>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>

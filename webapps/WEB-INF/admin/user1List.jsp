@@ -17,8 +17,9 @@
 <%@ include file="../../header.jsp" %>
 <div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
 	<div class="container is-fluid">
-		<h2>회원 목록</h2>
-		<table class="table">
+	<div class="field">
+		<h2 class="">회원 목록</h2>
+		<table class="table is-fullwidth">
 			<thead>
 				<tr><th>연번</th><th>회원 아이디</th><th>회원명</th><th>가입일</th><th>개별 작업</th></tr>
 			</thead>
@@ -27,14 +28,14 @@
 				<tr>
 					<td>${status.count }</td>
 					<td>
-						<span title="${user.id }">${user.id }</span>
-						<%-- <a href="${path1 }/UserDetail.do?idx=${user.id }" title="${user.hpw }">${user.id }</a> --%>
+						<input type="hidden" name="id" id="id" value="${wid }">
+						<a href="${path1 }/MemberDetail.do?id=${user.id }" title="${user.hpw }">${user.id }</a>
 					</td>
 					<td><span title="${user.addr }">${user.name }</span></td>
 					<td>
-						<span title="${user.udate }">${user.udate }</span>
-						<%-- <fmt:parseDate value="${user.udate }" var="udate" pattern="yyyy-MM-dd HH:mm:ss" />
-						<span title="전화번호 : ${user.tel }, 이메일 : ${user.email }"><fmt:formatDate value="${udate }" pattern="yyyy년 MM월 dd일" /></span> --%>
+						<%-- <span title="${user.udate }">${user.udate }</span> --%>
+						<fmt:parseDate value="${user.udate }" var="udate" pattern="yyyy-MM-dd HH:mm:ss" />
+						<span title="전화번호 : ${user.tel }, 이메일 : ${user.email }"><fmt:formatDate value="${udate }" pattern="yyyy년 MM월 dd일" /></span>
 					</td>
 					<td>
 						<a href="${path1 }/AdminDeleteUser1.do?id=${user.id }" class="button is-danger">회원 삭제</a>
@@ -55,6 +56,7 @@
 			<a href="${path1 }/InsertUser1.do" class="button is-primary">회원 직권 등록</a>
 		</div>
 		</c:if>
+		</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

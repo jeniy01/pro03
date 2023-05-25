@@ -38,10 +38,10 @@ public class User1DAO {
 				User1DTO user = new User1DTO();
 				user.setId(rs.getString("id"));
 				qpw = AES256.decryptAES256(rs.getString("pw"), key);
-				int k = qpw.length();	//암호 글자수 세기
-				String vpw = qpw.substring(0, 3);	//3글자만 암호를 보여주기
+				int k = qpw.length();
+				String vpw = qpw.substring(0, 3);
 				String hpw = "";
-				for(int i=0;i<k-3;i++){	//나머지는 *로 넣기
+				for(int i=0;i<k-3;i++){
 					hpw+="*";
 				}
 				user.setPw(vpw+hpw);
@@ -57,8 +57,6 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}
@@ -87,8 +85,6 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}
@@ -97,7 +93,6 @@ public class User1DAO {
 	
 	public int loginPass(String id, String pw) throws InvalidKeyException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidParameterSpecException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException{
 		int cnt = 0;
-		/*String qpw = "";*/
 		try {
 			con = MySQL8.getConnection();
 			pstmt = con.prepareStatement(MySQL8.USER_LOGIN);
@@ -118,8 +113,6 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}
@@ -140,8 +133,6 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}
@@ -180,10 +171,10 @@ public class User1DAO {
 			if(rs.next()){
 				user.setId(rs.getString("id"));
 				qpw = AES256.decryptAES256(rs.getString("pw"), key);
-				int k = qpw.length();	//암호 글자수 세기
-				String vpw = qpw.substring(0, 3);	//3글자만 암호를 보여주기
+				int k = qpw.length();
+				String vpw = qpw.substring(0, 3);
 				String hpw = "";
-				for(int i=0;i<k-3;i++){	//나머지는 *로 넣기
+				for(int i=0;i<k-3;i++){
 					hpw+="*";
 				}
 				user.setPw(vpw+hpw);
@@ -198,8 +189,75 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
+		} finally {
+			MySQL8.close(rs, pstmt, con);
+		}
+		return user;
+	}
+	
+	public User1DTO myInfo2(String id) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException{
+		User1DTO user = new User1DTO();
+		try {
+			con = MySQL8.getConnection();
+			pstmt = con.prepareStatement(MySQL8.USER_LOGIN);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				user.setId(rs.getString("id"));
+				qpw = AES256.decryptAES256(rs.getString("pw"), key);
+				int k = qpw.length();	
+				String vpw = qpw.substring(0, 3);	
+				String hpw = "";
+				for(int i=0;i<k-3;i++){	
+					hpw+="*";
+				}
+				user.setPw(vpw+hpw);
+				user.setHpw(qpw);
+				user.setName(rs.getString("name"));
+				user.setTel(rs.getString("tel"));
+				user.setAddr(rs.getString("addr"));
+				user.setEmail(rs.getString("email"));
+				user.setUdate(rs.getString("udate"));
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MySQL8.close(rs, pstmt, con);
+		}
+		return user;
+	}
+	
+	public User1DTO userDetail(String id) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException{
+		User1DTO user = new User1DTO();
+		String wid="";
+		try {
+			con = MySQL8.getConnection();
+			pstmt = con.prepareStatement(MySQL8.USER_LOGIN);
+			pstmt.setString(1, wid);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				user.setId(rs.getString("wid"));
+				qpw = AES256.decryptAES256(rs.getString("pw"), key);
+				int k = qpw.length();	
+				String vpw = qpw.substring(0, 3);	
+				String hpw = "";
+				for(int i=0;i<k-3;i++){	
+					hpw+="*";
+				}
+				user.setPw(vpw+hpw);
+				user.setHpw(qpw);
+				user.setName(rs.getString("name"));
+				user.setTel(rs.getString("tel"));
+				user.setAddr(rs.getString("addr"));
+				user.setEmail(rs.getString("email"));
+				user.setUdate(rs.getString("udate"));
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}
@@ -277,13 +335,14 @@ public class User1DAO {
 				User1DTO user = new User1DTO();
 				user.setId(rs.getString("id"));
 				qpw = AES256.decryptAES256(rs.getString("pw"), key);
-				int k = qpw.length();	//암호 글자수 세기
-				String vpw = qpw.substring(0, 3);	//3글자만 암호를 보여주기
+				int k = qpw.length();
+				String vpw = qpw.substring(0, 3);
 				String hpw = "";
-				for(int i=0;i<k-3;i++){	//나머지는 *로 넣기
+				for(int i=0;i<k-3;i++){
 					hpw+="*";
 				}
 				user.setPw(vpw+hpw);
+				//user.setHpw(qpw);
 				user.setName(rs.getString("name"));
 				user.setTel(rs.getString("tel"));
 				user.setAddr(rs.getString("addr"));
@@ -295,8 +354,6 @@ public class User1DAO {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		/*} catch(Exception e){
-			System.out.println("");*/
 		} finally {
 			MySQL8.close(rs, pstmt, con);
 		}

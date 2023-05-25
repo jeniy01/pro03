@@ -29,7 +29,7 @@
 		    <div class="navbar-item has-dropdown is-hoverable">
 		        <a class="navbar-link">지역정보</a>
 		        <div class="navbar-dropdown">
-		          <a href="${path }/localinfo.jsp"" class="navbar-item">가평소개</a>
+		          <a href="${path }/localinfo.jsp" class="navbar-item">가평소개</a>
 		          <a href="${path }/news.jsp" class="navbar-item">가평여행소식</a>
 		          <a href="${path }/photo.jsp" class="navbar-item">가평관광사진</a>
 		        </div>
@@ -50,7 +50,7 @@
 		        </div>
 		      </div>
 		      <div class="navbar-item has-dropdown is-hoverable">
-		        <a class="navbar-link">맛집</a>
+				<a class="navbar-link">맛집</a>
 		        <div class="navbar-dropdown">
 		          <a href="${path }/mlist.jsp" class="navbar-item">100대 맛집</a>
 		          <a href="${path }/rest.jsp" class="navbar-item">일반음식점</a>

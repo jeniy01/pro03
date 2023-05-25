@@ -39,7 +39,10 @@ response.setContentType("text/html; charset=utf-8");
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${noti.nauthor }</td>
+					<td>
+					<input type="hidden" name="nauthor" id="nauthor" value="${sid }">
+					${sid }
+					</td>
 				</tr>
 				<tr>
 					<th>작성일</th>
