@@ -18,7 +18,7 @@ public class MySQL8 {
 	public final static String SAMPLE_UPDATE = "update sample1 set item2=? where item1=?";
 	public final static String SAMPLE_DELETE = "delete from sample1 where item1=?";
 	
-	//공지사항 관련 SQL
+	//notice
 	public final static String NNUM_GENERATER="select nnum from (select * from notice order by nnum desc) where rownum = 1";
 	public final static String NOTICE_SELECT_ALL = "select * from notice order by nnum desc";
 	public final static String NOTICE_SELECT_ONE = "select * from notice where nnum=?";
@@ -27,7 +27,7 @@ public class MySQL8 {
 	public final static String UPDATE_NOTICE2 = "update notice set ntitle=?, ncontent=? where nnum=?";
 	public final static String DELETE_NOTICE = "delete from notice where nnum=?";
 	
-	//회원 관련 SQL
+	//user1
 	public final static String USER_SELECT_ALL = "select * from user1 order by udate desc";
 	public final static String USER_LOGIN =  "select * from user1 where id=?";
 	public final static String INSERT_USER = "insert into user1(id, pw, name, tel, addr, email) values (?,?,?,?,?,?)";
@@ -36,7 +36,7 @@ public class MySQL8 {
 	public final static String DELETE_USER = "delete from user1 where id=?";
 	public final static String UPDATE_PW_RESET = "update user1 set pw=? where id=?";
 	
-	//리뷰 관련 SQL
+	//review
 	public final static String REV_GENERATOR = "select rnum from (select * from review order by rnum desc) where rownum = 1";
 	public final static String ALL_REVIEW = "select * from review";
 	public final static String REVIEW_SELECT_ONE = "select * from review where rnum=?";
@@ -45,21 +45,22 @@ public class MySQL8 {
 	public final static String UPDATE_REVIEW2 = "update review set rcontent=?, rtitle=?, file1=? where rnum=?";
 	public final static String DELETE_REVIEW = "delete from review where rnum=?";
 
-	//Qna 관련 SQL
-	public final static String QNUM_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
+	//Q&a
+	public final static String QNUM_GENERATOR = "select @rownum:=@rownum+1, A.* from qna a, (select @rownum:=0)r";
+	//public final static String QNUM_GENERATOR = "select qnum from (select * from qna order by qnum desc) where rownum = 1";
 	public final static String ADD_QNA = "insert into qna values (?,?,?,?,default,1,?)";
 	public final static String ADD_REPLY = "insert into qna values (?,?,?,?,default,2,?)";
-	public final static String QNA_LIST = "select * from qna order by parno desc, qnum asc";
-	public final static String QNA_SELECT = "select * from qna where parno=? order by qnum asc";
+	public final static String QNA_LIST = "select * from qna order by parno desc, qnum desc";
+	public final static String QNA_SELECT = "select * from qna where parno=? order by qnum desc";
 	public final static String QNA_SELECT_ONE = "select * from qna where qnum=?";
-	public final static String REPLY_LIST = "select * from qna where parno=? and lev=2 order by qnum asc";
-	public final static String REPLY_SELECT = "select * from qna where parno=? and lev=2 order by qnum asc";
-	public final static String REPLY_SELECT_ONE = "select * from qna where lev=2 and qnum=? order by qnum asc";
+	public final static String REPLY_LIST = "select * from qna where parno=? and lev=2 order by qnum desc";
+	public final static String REPLY_SELECT = "select * from qna where parno=? and lev=2 order by qnum desc";
+	public final static String REPLY_SELECT_ONE = "select * from qna where lev=2 and qnum=? order by qnum desc";
 	public final static String UPDATE_QNA = "update qna set qtitle=?, qcontent=? where qnum=?";
-	public final static String DELETE_QNA = "delete from qna where parno=?";
+	public final static String DELETE_QNA = "delete from qna where qnum=?";
 	public final static String DELETE_REPLY = "delete from qna where qnum=?";
 
-	//게시판 관련 SQL
+	//board
 	public final static String BOARD_CATENAME_SELECT = "select * from category where cate=?";
 	public final static String BOARD_SELECT_ALL = "select * from board order by cate desc";
 	public final static String BOARD_SELECT_ONE = "select * from board where bnum=?";

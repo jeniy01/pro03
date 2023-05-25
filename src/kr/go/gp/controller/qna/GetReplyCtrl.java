@@ -19,14 +19,14 @@ public class GetReplyCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		int qnum = Integer.parseInt(request.getParameter("qnum")); 
+		int qnum = Integer.parseInt(request.getParameter("qnum"));
 		
 		QnaDAO dao = new QnaDAO();
-		QnaDTO qn = new QnaDTO();
+		QnaDTO qna = new QnaDTO();
 		
-		qn = dao.getQna2(qnum);	//해당 질문 불러오기
+		qna = dao.getQna2(qnum);	//해당 질문 불러오기
 		
-		request.setAttribute("qn", qn);
+		request.setAttribute("qna", qna);
 		
 		//디스패치로 view를 생성하여 noticeList.jsp로 요청 받은 notiList를 포워드
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/qna/getReply.jsp");

@@ -19,7 +19,8 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field">
 		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>공지사항</strong></h2>
 		<table class="table is-fullwidth" style="text-align:center;">
@@ -54,7 +55,8 @@ response.setContentType("text/html; charset=UTF-8");
 					<a href="${path1 }/InsertNotice.do" class="button is-primary">글 등록</a>
 				</div>
 			</div>
-		</c:if>	
+		</c:if>
+		</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

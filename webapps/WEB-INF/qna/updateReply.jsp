@@ -10,14 +10,15 @@
 <%@ include file="../../common.jsp" %>
 <title>답변 글 수정하기</title>
 <style>
-.container-fluid { width:1280px; }
+.container { width:1280px; }
 #fileSel1:checked ~ #file1 { display:none; }
 #fileSel2:checked ~ #file1 { display:block; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field">
 		<h2>답변 글 수정</h2>
 		<p>${msg }</p>
@@ -29,24 +30,25 @@
 						<td>
 							<input type="hidden" name="qauthor" id="qauthor" value="${sid }">
 							<input type="hidden" name="qnum" id="qnum" value="${qn.qnum }">
-							<input type="text" name="qtitle" id="qtitle" value="${qn.qtitle }" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
+							<input type="text" name="qtitle" id="qtitle" value="${qn.qtitle }" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="input" required autofocus>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="qcontent">답변 글 내용</label></th>
 						<td>
-							<textarea rows="10" cols="100" name="qcontent" id="qcontent" maxlength="990" title="1000자 내로 작성" class="form-control">${qn.qcontent }</textarea>
+							<textarea rows="10" cols="100" name="qcontent" id="qcontent" maxlength="990" title="1000자 내로 작성" class="textarea">${qn.qcontent }</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="답변 수정" class="btn btn-primary">
-							<a href="${path1 }/QnaList.do" class="btn btn-primary">글 목록</a>				
+							<input type="submit" value="답변 수정" class="button is-primary">
+							<a href="${path1 }/QnaList.do" class="button is-light">목록보기</a>				
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>		
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

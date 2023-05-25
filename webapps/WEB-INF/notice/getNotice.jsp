@@ -19,7 +19,8 @@ response.setContentType("text/html; charset=utf-8");
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field" style="text-align:center;">
 		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>글 상세보기</strong></h2>
 		<table class="table is-fullwidth">
@@ -65,6 +66,7 @@ response.setContentType("text/html; charset=utf-8");
 			<a href="${path1 }/UpdateNotice.do?nnum=${noti.nnum }" class="button is-link">글수정</a>
 			<a href="${path1 }/DelNotice.do?nnum=${noti.nnum }" class="button is-danger">글삭제</a>
 		</div>
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

@@ -19,7 +19,8 @@ response.setContentType("text/html; charset=utf-8");
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field" style="text-align:center;">
 		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>리뷰 상세보기</strong></h2>
 		<table class="table is-fullwidth">
@@ -28,14 +29,14 @@ response.setContentType("text/html; charset=utf-8");
 					<th>리뷰 번호</th>
 					<td>${rev.rnum }</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>사진</th>
 					<td colspan="2">
 						<div class="pi">
 							<img src='${path1 }/image/${rev.file1 }' alt="${rev.rtitle }" />
 						</div>
 					</td>
-				</tr>	
+				</tr> --%>	
 				<tr>
 					<th>제목</th>
 					<td>${rev.rtitle }</td>
@@ -73,6 +74,7 @@ response.setContentType("text/html; charset=utf-8");
 			<a href="${path1 }/UpdateReview.do?rnum=${rev.rnum }" class="button is-link">글수정</a>
 			<a href="${path1 }/DelReview.do?rnum=${rev.rnum }" class="button is-danger">글삭제</a>
 		</div>
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

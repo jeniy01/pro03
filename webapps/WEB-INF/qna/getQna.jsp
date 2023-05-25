@@ -15,7 +15,8 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field">
 		<h2>글 상세보기</h2>
 		<table class="table">
@@ -39,7 +40,7 @@
 				<tr>
 					<th>작성일</th>
 					<td>
-						<fmt:parseDate value="${qna.qdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:parseDate value="${qna.qdate }" var="qdate" pattern="yyyy-MM-dd HH:mm:ss" />
 						<fmt:formatDate value="${qdate }" pattern="yyyy년 MM월 dd일" />
 					</td>
 				</tr>
@@ -73,14 +74,15 @@
 			</tbody>
 		</table>
 		<div class="btn-group">
-			<a href="${path1 }/QnaList.do" class="btn btn-primary">글 목록</a>
+			<a href="${path1 }/QnaList.do" class="button is-light">목록보기</a>
 			<c:if test="${sid.equals('admin') }">
-			<a href="${path1 }/AddReply.do?parno=${qn.qnum }" class="btn btn-primary">답변하기</a>
+			<a href="${path1 }/AddReply.do?parno=${qna.qnum }" class="button is-primary">답변하기</a>
 			</c:if>
-			<c:if test="${qn.author.equals(sid) || sid.equals('admin') }">
-			<a href="${path1 }/DelQna.do?qnum=${qn.qnum }" class="btn btn-primary">질문 삭제</a>
+			<c:if test="${qna.qauthor.equals(sid) || sid.equals('admin') }">
+			<a href="${path1 }/DelQna.do?qnum=${qna.qnum }" class="button is-danger">질문 삭제</a>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

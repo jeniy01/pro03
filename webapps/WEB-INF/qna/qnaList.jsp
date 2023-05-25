@@ -10,17 +10,18 @@
 <%@ include file="../../common.jsp" %>
 <title>질문 및 답변 목록</title>
 <style>
-.container-fluid { width:1280px; }
+.container { width:1280px; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field">
-		<h2>질문 및 답변</h2>
-		<table class="table">
+		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>질문 및 답변</strong></h2>
+		<table class="table is-fullwidth" style="text-align:center;">
 			<thead>
-				<tr><th>연번</th><th>제목</th><th>작성자</th><th>작성일</th></tr>
+				<tr><th style="text-align:center;">연번</th><th style="text-align:center;">제목</th><th style="text-align:center;">작성자</th><th style="text-align:center;">작성일</th></tr>
 			</thead>
 			<tbody>
 				<c:set var="cnt" value="0" />
@@ -30,7 +31,7 @@
 					<c:set var="cnt" value="${cnt=cnt+1 }" />
 					<td>${cnt }</td>
 					<td>
-						<a href="${path1 }/GetQna.do?qnum=${qna.qnum }">${qna.title }</a>
+						<a href="${path1 }/GetQna.do?qnum=${qna.qnum }">${qna.qtitle }</a>
 					</td>
 					</c:if>
 					<c:if test="${qna.lev==2 }">
@@ -40,7 +41,7 @@
 					</c:if>
 					<td>${qna.qauthor }</td>
 					<td>
-						<fmt:parseDate value="${qna.qdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:parseDate value="${qna.qdate }" var="qdate" pattern="yyyy-MM-dd HH:mm:ss" />
 						<fmt:formatDate value="${qdate }" pattern="yyyy년 MM월 dd일" />
 					</td>
 				</tr>
@@ -53,10 +54,13 @@
 			</tbody>
 		</table>
 		<c:if test="${!empty sid }">
-		<div class="btn-group">
-			<a href="${path1 }/AddQna.do" class="btn btn-primary">질문하기</a>
+		<div class="navbar-item">
+			<div class="buttons">
+			<a href="${path1 }/AddQna.do" class="button is-primary">질문하기</a>
+			</div>
 		</div>
 		</c:if>
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

@@ -19,8 +19,8 @@ response.setContentType("text/html; charset=utf-8");
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
-	<div class="field">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">	<div class="field">
 		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>리뷰</strong></h2>
 		<table class="table is-fullwidth" style="text-align:center;">
 			<thead>
@@ -55,6 +55,7 @@ response.setContentType("text/html; charset=utf-8");
 				</div>
 			</div>
 			</c:if>
+		</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

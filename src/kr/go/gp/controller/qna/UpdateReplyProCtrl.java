@@ -19,14 +19,22 @@ public class UpdateReplyProCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		int qnum = 0;
+		String qtitle = "";
+		String qcontent = "";
+		String qauthor = "";
+		
 		QnaDTO qna = new QnaDTO();
 		QnaDAO dao = new QnaDAO();
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum")); 
+		//int qnum = Integer.parseInt(request.getParameter("qnum"));
 		qna.setQnum(qnum);
-		qna.setQtitle(request.getParameter("qtitle"));
-		qna.setQcontent(request.getParameter("qcontent"));
-		qna.setQauthor(request.getParameter("qauthor"));
+		qna.setQtitle(qtitle);
+		qna.setQcontent(qcontent);
+		qna.setQauthor(qauthor);
+		//qna.setQtitle(request.getParameter("qtitle"));
+		//qna.setQcontent(request.getParameter("qcontent"));
+		//qna.setQauthor(request.getParameter("qauthor"));
 		
 		int cnt = dao.updateReply(qna);
 		
@@ -39,4 +47,3 @@ public class UpdateReplyProCtrl extends HttpServlet {
 		}
 	}
 }
-

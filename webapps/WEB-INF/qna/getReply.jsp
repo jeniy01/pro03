@@ -15,7 +15,8 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field">
 		<h2>답변글 상세보기</h2>
 		<table class="table">
@@ -47,12 +48,13 @@
 		</table>
 		<hr>
 		<div class="btn-group">
-			<a href="${path1 }/QnaList.do" class="btn btn-primary">글 목록</a>
-			<c:if test="${qna.author.equals(sid) || sid.equals('admin') }">
-			<a href="${path1 }/UpdateReply.do?qnum=${qna.qnum }" class="btn btn-primary">답변 변경</a>
-			<a href="${path1 }/DelReply.do?qnum=${qna.qnum }" class="btn btn-primary">답변 삭제</a>
+			<a href="${path1 }/QnaList.do" class="button is-light">목록보기</a>
+			<c:if test="${qna.qauthor.equals(sid) || sid.equals('admin') }">
+			<a href="${path1 }/UpdateReply.do?qnum=${qna.qnum }" class="button is-primary">답변 수정</a>
+			<a href="${path1 }/DelReply.do?qnum=${qna.qnum }" class="button is-danger">답변 삭제</a>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

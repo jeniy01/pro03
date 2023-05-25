@@ -19,7 +19,8 @@ response.setContentType("text/html; charset=utf-8");
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="field" style="text-align:center;">
 		<h2 style="padding-top: 100px; padding-bottom:50px; font-size:30px;"><strong>리뷰쓰기</strong></h2>
 		<form action="${path1 }/InsertReviewPro.do" method="post" enctype="multipart/form-data">
@@ -29,13 +30,13 @@ response.setContentType("text/html; charset=utf-8");
 						<th><label for="rtitle">제목</label></th>
 						<td>
 							<input type="hidden" name="rauthor" id="rauthor" value="${sid }">
-							<input type="text" name="rtitle" id="rtitle" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
+							<input type="text" name="rtitle" id="rtitle" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="input" required autofocus>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="rcontent">내용</label></th>
 						<td>
-							<textarea rows="10" cols="100" name="rcontent" id="rcontent" maxlength="990" title="1000자 내로 작성" class="form-control"></textarea>
+							<textarea rows="10" cols="100" name="rcontent" id="rcontent" maxlength="990" title="1000자 내로 작성" class="textarea"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -46,13 +47,14 @@ response.setContentType("text/html; charset=utf-8");
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="글쓰기" class="button is-light">
+							<input type="submit" value="글쓰기" class="button is-primary">
 							<a href="${path1 }/ReviewList.do" class="button is-light">글 목록</a>				
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>		
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>

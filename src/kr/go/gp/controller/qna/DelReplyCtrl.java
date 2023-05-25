@@ -18,10 +18,9 @@ public class DelReplyCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		QnaDAO dao = new QnaDAO();	
-		int qnum = Integer.parseInt(request.getParameter("qnum")); 
+		QnaDAO dao = new QnaDAO();
+		int qnum = Integer.parseInt(request.getParameter("qnum"));
 
-		
 		int cnt = dao.delReply(qnum);
 		
 		if(cnt==0){ //답변삭제 실패
@@ -33,4 +32,3 @@ public class DelReplyCtrl extends HttpServlet {
 		}
 	}
 }
-

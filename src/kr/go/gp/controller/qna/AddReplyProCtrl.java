@@ -23,7 +23,7 @@ public class AddReplyProCtrl extends HttpServlet {
 		QnaDAO dao = new QnaDAO();
 		
 		String parno = request.getParameter("parno");
-		/*qna.setQnum(dao.getqnumGenerator());*/
+		qna.setQnum(dao.getqnumGenerator());
 		qna.setParno(parno);
 		qna.setQtitle(request.getParameter("qtitle"));
 		qna.setQcontent(request.getParameter("qcontent"));

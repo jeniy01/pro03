@@ -15,7 +15,7 @@
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="container" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
 <div class="container is-fluid" style="padding-top:50px;">
 	<div class="box">
 	<h2 style="text-align:center; font-size:30px; padding-top:20px;"><strong>문화유적</strong></h2>

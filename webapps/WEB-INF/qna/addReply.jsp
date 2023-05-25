@@ -8,50 +8,52 @@
 <html>
 <head>
 <%@ include file="../../common.jsp" %>
-<title>답변 글 쓰기</title>
+<title>답변 글쓰기</title>
 <style>
 .container-fluid { width:1280px; }
 </style>
 </head>
 <body>
 <%@ include file="../../header.jsp" %>
-<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; ">
+<div class="content" style="padding-top:30px; margin-top:30px; border-top:3px solid #333; min-height:500px; text-align:center;">
+<div class="container is-fluid" style="padding-top:px;">
 	<div class="container-fluid">
-		<h2>글 쓰기</h2>
-		<p>${msg }</p>
+		<h2>답변 쓰기</h2>
+		<%-- <p>${msg }</p> --%>
 		<form action="${path1 }/AddReplyPro.do" method="post">
 			<table class="table">
 				<tbody>
 					<tr>
-						<th><label for="title">답변 제목</label></th>
+						<th><label for="qtitle">답변 제목</label></th>
 						<td>
 							<input type="hidden" name="lev" id="lev" value="2">
 							<input type="hidden" name="parno" id="parno" value="${qna.qnum }">
-							<input type="hidden" name="author" id="author" value="${sid }">
-							<input type="text" name="title" id="title" value="[답변] ${qna.title }" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="form-control" required autofocus>
+							<input type="hidden" name="qauthor" id="qauthor" value="${sid }">
+							<input type="text" name="qtitle" id="qtitle" value="[답변] ${qna.qtitle }" maxlength="98" title="100자 내로 작성" placeholder="100자 내로 작성" class="input" required autofocus>
 						</td>
 					</tr>
 					<tr>
-						<th><label for="content">질문 내용</label></th>
+						<th><label for="qcontent">질문 내용</label></th>
 						<td>
-							<p>${qna.content }</p>
+							<p>${qna.qcontent }</p>
 						</td>
 					</tr>
 					<tr>
-						<th><label for="content">답변 내용</label></th>
+						<th><label for="qcontent">답변 내용</label></th>
 						<td>
-							<textarea rows="10" cols="100" name="content" id="content" maxlength="990" title="1000자 내로 작성" class="form-control"></textarea>
+							<textarea rows="10" cols="100" name="qcontent" id="qcontent" maxlength="990" title="1000자 내로 작성" class="textarea"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="답변 쓰기" class="btn btn-primary">
-							<a href="${path1 }/QnaList.do" class="btn btn-primary">질문 및 답변 목록</a>				
+							<input type="submit" value="답변 쓰기" class="button is-primary">
+							<a href="${path1 }/QnaList.do" class="button is-light">목록보기</a>				
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>		
+	</div>
 	</div>
 </div>
 <%@ include file="../../footer.jsp" %>
